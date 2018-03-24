@@ -1,0 +1,3 @@
+# Homework-for-C-
+The foundation of program designing
+I do not know what it is for so...
