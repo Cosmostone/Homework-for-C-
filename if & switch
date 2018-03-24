@@ -7,16 +7,17 @@ int main(){
   cin>>d;
   if (d==0) cout<<"Sunday";
   else if (d==1) cout<<"Monday";
-  else if (d==2) cout<<"Tuesdayy";
+  else if (d==2) cout<<"Tuesday";
   else if (d==3) cout<<"Wednesday";
   else if (d==4) cout<<"Thursday";
   else if (d==5) cout<<"Friday";
   else if (d==6) cout<<"Saturday";
+  else cout<<"Error";
   
 switch(d){
   case 0:cout<<"Sunday";break;
   case 1:cout<<"Monday";break;
-  case 2:cout<<"Tuesdayy";break;
+  case 2:cout<<"Tuesday";break;
   case 3:cout<<"Wednesday";break;
   case 4:cout<<"Thursday";break;
   case 5:cout<<"Friday";break;
