@@ -1,3 +1,3 @@
 # Homework-for-C-
 The foundation of program designing
-I do not know what it is for so...
+This is the homework codes for C++
