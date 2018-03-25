@@ -1,0 +1,38 @@
+#include "stdafx.h"
+#include<iostream>
+using namespace std;
+
+int prime(int j);
+int sum;
+
+int main(){
+	int n;
+	cout << "Input the number of the integers:";
+	cin >> n;
+	int *p;
+	p = new int[n];
+
+	for (int i = 1; i < n + 1; i++) {
+		cout << "Please input the number" << i << ":";
+		cin >> p[i];
+		sum = sum + p[i];
+	}
+	cout << "The sum of these integers is" << sum << endl;
+
+	cout << "The prime numbers that smaller than sum are:" << endl;
+	cout << "2" << endl;
+	for (int j = 3; j < sum+1; j++) {
+		int prime（j）;
+		int a;
+		a= prime(j);
+		if (a != 0) cout << a << endl;
+	}
+    return 0;
+}
+
+int prime(int j) {
+	for (int m = 2; m < j; m++) {
+		if (j%m == 0) return 0;
+	}
+	return j;
+}
