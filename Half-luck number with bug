@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+int judge(int i);
+int n;
+
+int main(){
+	int count = 0;
+	cout << "Input the number to be judged:";
+	cin >> n;
+	for (int i = 4; i < n; i++){
+		if (n%i == 0) {
+			int c = judge(i);
+			cout << c;
+			count++;
+		}
+	}
+	if (count != 1) cout << "It is a half-luck number.";
+	else cout << "It is not a half-luck number.";
+}
+
+int judge(int i){
+	int b;
+	for (int t = 0; pow(10, t-1) < i; t++){
+		b = t;
+	}
+	for (int a=b; a >= 0; a--){
+		int b = pow(10, a);
+		if (n / b != 4 && n / b != 7) return 0;
+	}
+	return i;
+}
