@@ -2,25 +2,56 @@
 using namespace std;
 
 int judge(int n);
+int max(int n);
 
 int main(){
 	int n;
 	cout << "Input the number n:";
 	cin >> n;
 	n = judge(n);
-
-    return 0;
+	int a = n / 100;
+	int b = (n - n / 100 * 100) / 10;
+	int c = n - n / 100 * 100 - (n - n / 100 * 100) / 10 * 10;
+	for (int i = 1; i <= 7; i++){
+		int x;
+		x = max(n);
+	}
+	return 0;
 }
 
 int judge(int n) {
 	int a = n / 100;
 	int b = (n - n / 100 * 100) / 10;
-	int c = n - n / 100 * 100 - (n - n / 100 * 100) / 10*10;
-	while (a==b&&b==c&&a==c) {
+	int c = n - n / 100 * 100 - (n - n / 100 * 100) / 10 * 10;
+	while (a == b&&b == c&&a == c) {
 		cout << "Retry n:";
 		cin >> n;
 	}
 	return n;
+}
+
+int max(int n){
+	int a = n / 100;
+	int b = (n - n / 100 * 100) / 10;
+	int c = n - n / 100 * 100 - (n - n / 100 * 100) / 10 * 10;
+	if (b > a){
+		int temp = a;
+		a = b;
+		b = temp;
+	}
+	if (c > b){
+		int temp = b;
+		b = c;
+		c = temp;
+
+	}
+	if (c > a){
+		int temp = a;
+		a = c;
+		c = temp;
+
+	}
+	return a * 100 + b * 10 + c;
 }
 
 
