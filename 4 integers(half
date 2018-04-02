@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+	cout << "Input n:";
+	int n;
+	cin >> n;
+	int g = sqrt(n);
+	for (int i = 1; i <= g; i++) {
+		if (g*g == n){
+			cout << "=" << g << "*" << g;
+			break;
+		}
+		else{
+			int n2 = n - g*g;
+			int g2 = sqrt(n2);
+			for (int i = 1; i <= g2; i++){
+				if (g*g + g2*g2 == n){
+					cout << "=" << g << "*" << g << "+" << g2 << "*" << g2;
+				}
+				else{
+					int n3 = n - g*g - g2*g2;
+					int g3 = sqrt(n3);
+					for (int i = 1; i <= g3; i++){
+						if (g*g + g2*g2 + g3*g3 == n){
+							cout << "=" << g << "*" << g << "+" << g2 << "*" << g2 << "+" << g3 << "*" << g3;
+						}
+						else{
+							int n4 = n - g*g - g2*g2 - g3*g3;
+							int g4 = sqrt(n4);
+							cout << "=" << g << "*" << g << "+" << g2 << "*" << g2 << "+" << g3 << "*" << g3 << "+" << g4 << "*" << g4;
+						}
+					}
+				}
+			}
+		}
+		return 0;
+	}
+}
