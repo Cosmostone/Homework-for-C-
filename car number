@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+	for (int i = 0; i <= 9; i++) {
+		for (int j = 0; j <= 9; j++) {
+			for (int k = 0; k*k <= 9999; k++) {
+				if (k*k == i * 1100 + j * 11 && i != j) {
+					cout << "The car number is" << i * 1100 + j * 11 << endl;
+				}
+			}
+		}
+	}
+    return 0;
+}
