@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+
+int sum(int n);
+
+int main(){
+	int n;
+	cout << "Input the number n:" << endl;
+	cin >> n;
+	int s = sum(n);
+	cout << "The sum without 7 is:" << s << endl;
+    return 0;
+}
+
+int sum(int n) {
+	if (1 < n < 70 ) {
+		int sum = 0;
+		for (int i = 1; i <= n; i++) {
+			int s = i / 10 * 10;
+			if (i - s != 7) {
+				sum = sum + i;
+			}
+		}
+		return sum;
+	}
+	else if (69 < n < 80) {
+		return  sum(69);
+	}
+	else if (79 < n < 100) {
+		int sum = -745;
+		for (int i = 1; i <= n; i++) {
+			int s = i / 10 * 10;
+			if (i - s != 7) {
+				sum = sum + i;
+			}
+		}
+		return sum;
+	}
+}
