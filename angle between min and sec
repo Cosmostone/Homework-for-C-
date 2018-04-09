@@ -1,0 +1,42 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+int main(){
+	int T;
+	cin >> T;
+	for (int i = 1; i <= T; i++){
+		int h, m, s;
+		cin >>  h >> m >> s;
+		if (h >= 12){
+			h = h - 12;
+		}
+		int t;
+		cin >> t;
+		int dh = t / 3600;
+		int dm = (t - dh * 3600) / 60;
+		int ds = t - 3600 * dh - 60 * dm;
+		while (s + ds >= 60){
+			ds = ds - 60;
+			dm = dm + 1;
+		}
+		while (m + dm >= 60){
+			dm = dm - 1; 
+			dh = dh + 1;
+		}
+		while (h + dh >= 12){
+			h = h - 12;
+		}
+		h = h + dh;
+		m = m + dm;
+		float x = 1.0*h / 12;
+		float y = 1.0*m / 60;
+		double c1 = 360 * x + 30 * y;
+		double c2 = 360 * y;
+		double c = fabs(c1 - c2);
+		if (c <= 180){
+			cout << fixed << setprecision(4) << c << endl;
+		}
+		else cout << fixed << setprecision(4) << c - 180 <<  endl;
+	}
+}
