@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+
+int gcd(int x, int y);
+int lcm(int x, int y);
+
+
+int main(){
+	int a, b, c;
+	cout << "Input the three numbers:";
+	cin >> a >> b >> c;
+	int d = gcd(a, b);
+	int e = gcd(c, d);
+	cout << "The gcd of the three numbers is:" << e << endl;
+	int f = lcm(a, b);
+	int g = lcm(f, c);
+	cout << "The lcm of the three numbers is:" << g << endl;
+    return 0;
+}
+
+int gcd(int x, int y) {
+	int z = x % y;
+	if (z == 0) return y;
+	else {
+		x = y;
+		y = z;
+		gcd(x, y);
+	}
+}
+
+int lcm(int x, int y) {
+	int z = x * y / gcd(x, y);
+	return z;
+}
