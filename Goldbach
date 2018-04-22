@@ -1,0 +1,27 @@
+#include "stdafx.h"
+#include<iostream>
+using namespace std;
+
+bool prime(int x);
+
+int main() {
+	cout << "Input an even number n:";
+	int n;
+	cin >> n;
+	if (n == 4) {
+		cout << "=" << 2 << "+" << 2;
+	}
+	for (int i = 3; i <= n / 2 ; i++) {
+		if (prime(i) == true && prime(n - i) == true) {
+				cout << "=" << i << "+" << n - i;
+		}
+	}
+}
+
+bool prime(int x) {
+	if (x == 1) return false;
+	for (int i = 2; i < x; i++) {
+		if (x % i == 0) return false;
+	}
+	return true;
+}
