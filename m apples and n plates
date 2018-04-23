@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int ways(int m, int n);
+
+int main(){
+	int m, n;
+	cin >> m >> n;
+	int k = ways(m, n);
+	cout<<k;
+	return 0;
+}
+
+int ways(int m, int n){
+	if (n == 1) return 1;
+	if (m == 1||m==0) return 1;
+	if (m < n) return ways(m, m);
+	else return ways(m, n - 1) + ways(m - n, n);
+}
