@@ -1,0 +1,37 @@
+#include "stdafx.h"
+#include<iostream>
+using namespace std;
+
+int max(int x, int y, int z);
+float max(float x, float y, float z);
+
+int main() {
+	int a, b, c;
+	cin >>a >> b >> c;
+	cout << max(a, b, c);
+	float m, n, p;
+	cin >> m >> n >> p;
+	cout << max(m, n, p);
+}
+
+int max(int x, int y, int z) {
+	if (x > y) {
+		if (x > z) return x;
+		else return z;
+	}
+	else {
+		if (y > z) return y;
+		else return z;
+	}
+}
+
+float max(float x, float y, float z) {
+	if (x > y) {
+		if (x > z) return x;
+		else return z;
+	}
+	else {
+		if (y > z) return y;
+		else return z;
+	}
+}
