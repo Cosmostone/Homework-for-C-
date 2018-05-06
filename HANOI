@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+
+void h(char A, char B, char C, int n);
+
+int main(){
+	int n;
+	cin >> n;
+	char A, B, C;
+	cin >> A >> B >> C;
+	h(A, B, C, n);
+    return 0;
+}
+
+void h(char A, char B, char C, int n) {
+	if (n == 1) {
+		cout << n << ":" << A << "-" << B << endl;
+	}
+	else {
+		h(A, C, B, n - 1);
+		cout<< n << ":" << A <<"-" << B<<endl;
+		h(C, B, A, n - 1);
+	}
+}
