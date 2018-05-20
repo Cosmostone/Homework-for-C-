@@ -1,0 +1,31 @@
+#include "stdafx.h"
+#include<iostream>
+using namespace std;
+
+bool leap(int x);
+
+int main(){
+	struct date {
+		int year;
+		int month;
+		int day;
+	};
+	int a[12] = { 0,31,59,90,120,151,181,212,243,273,304,334 };
+	int b[12] = { 0,31,60,91,121,152,182,213,244,274,305,335 };
+	int s;
+	date x;
+	cin >> x.year >> x.month >> x.day;
+	if (leap(x.year) == true) {
+		s = b[x.month-1] + x.day;
+	}
+	if (leap(x.year) == false) {
+		s = a[x.month - 1] + x.day;
+	}
+	cout << s;
+    return 0;
+}
+
+bool leap(int x) {
+	if (x % 4 == 0 && x % 100 != 0) return true;
+	else return false;
+}
