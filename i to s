@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+void int_to_str(int n, char str[]);
+
+int main(){
+	int n;
+	cin >> n;
+	char str[12];
+	int_to_str(n, str);
+	return 0;
+}
+
+
+void int_to_str(int n, char str[]){
+	int ws = 0;
+	int x;
+	x = n;
+	while (x > 0){
+		x = x / 10;
+		ws++;
+	}
+	int c = ws - 1;
+	str[ws] = '\0';
+	while (n > 0){
+		str[c] = (n % 10) + '0';
+		c--;
+		n = n / 10;
+	}
+	cout << str;
+}
