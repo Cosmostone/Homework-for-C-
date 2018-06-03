@@ -1,0 +1,88 @@
+#include<iostream>
+using namespace std;
+
+struct Node {
+	int content;
+	Node *next;
+};
+
+Node *IFH();
+Node *Del(Node *head, int i);
+Node *Ins(Node *head, int i,int m);
+
+
+int main(){
+	cout << "Please input a string of integers to create a linkedlist (insert from head and end inputting with -1):";
+	Node *head = IFH();
+	int x, y,m;
+	cout << "Input the x-th node to be deleted:";
+	cin >> x;
+	cout << "Input the node to be added after the y-th(after deleting) node:";
+	cin >> y;
+	cout << "Input the content of node to be added after the y-th(after deleting) node:";
+	cin >> m;
+	Del(head, x);
+	Ins(head, y,m);
+	for (Node *p = head; p != NULL; p = p->next) {
+		cout << p->content << ',';
+	}
+    return 0;
+}
+
+Node *IFH() {
+	Node *head = NULL;
+	int x;
+	cin >> x;
+	while (x != -1) {
+		Node *p = new Node;
+		p->content = x;
+		p->next = head;
+		head = p;
+		cin >> x;
+	}
+	return head;
+}
+
+Node *Del(Node *head, int i) {
+	if (i == 1) {
+		Node *p = head;
+		head = head->next;
+		delete p;
+	}
+	else {
+		Node *p = head;
+		int j = 1;
+		while (j < i - 1 && p->next != NULL) {
+			p = p->next;
+			j++;
+		}
+		if (p->next != NULL) {
+			Node *q = p->next;
+			p->next = q->next;
+			delete q;
+		}
+		else {
+			cout << "没有第" << i << "个结点" << endl;
+		}
+	}
+	return head;
+}
+
+Node *Ins(Node *head, int i,int m) {
+	Node *p = new Node;
+	p->content = m;
+	Node *q = head;
+	int j = 1;
+	while (j < i&&q->next != NULL) {
+		q = q->next;
+		j++;
+	}
+	if (j == i) {
+		p->next = q->next;
+		q->next = p;
+	}
+	else {
+		cout << "没有第" << i << "个结点" << endl;
+	}
+	return head;
+}
