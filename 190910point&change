@@ -1,0 +1,115 @@
+#include "pch.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main(){
+	ifstream f;
+	f.open("d:\\matrix.txt");
+	int T;
+	f >> T;
+	int a[101][101];
+	int b[101][101];
+	for (int m = 1; m < 101; m++) {
+		for (int n = 1; n < 101; n++) {
+			b[m][n] = 0;
+		}
+	}
+	for (int i = 1; i < T + 1; i++) {
+		int flag = 0;
+		int x;
+		f >> x;
+		if (x == 1) {
+			int l;
+			f >> l;
+			cout << "YES" << endl;
+			cout << "(1,1)" << endl;
+			continue;
+		}
+		for (int i = 1; i < x+1; i++) {
+			for (int j = 1; j < x + 1; j++) {
+				f >> a[i][j];
+			}
+		}
+		for (int i = 1; i < x + 1; i++) {
+			int max = a[i][1];
+			for (int j = 1; j < x + 1; j++) {
+				if (a[i][j] > max) {
+					max = a[i][j];
+				}
+			}
+			for (int j = 1; j < x + 1; j++) {
+				if (a[i][j] == max) {
+					int min = a[i][j];
+					for (int k = 1; k < x + 1; k++) {
+						if (a[k][j] < min) {
+							break;
+						}
+						if (k == x) {
+							for (int o = 1; o < x + 1; o++) {
+								if (a[o][j] == min) {
+									b[o][j] = 1;
+									flag = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (flag == 1) {
+			cout << "YES"<<endl;
+			for (int p = 1; p < x + 1; p++) {
+				for (int q = 1; q < x + 1; q++) {
+					if (b[p][q] == 1) {
+						cout <<"("<< p<<"," << q<<")"<<endl;
+					}
+				}
+			}
+		}
+		else {
+			cout << "NO"<<endl;
+		}
+	}
+	return 0;
+}
+
+
+
+
+#include "pch.h"
+#include <iostream>
+#include <math.h>
+#include <string>
+using namespace std;
+
+int main(){
+	int a, b;
+	long C;
+	cin >> a >> b >> C;
+	while (a != -1 && b!=-1 && C!=-1) {
+		int y = 0;
+		int s = 0;
+		int i = 0;
+		while (C > 0) {
+			y = C % 10;
+			s = s + y*pow(a, i);
+			C = C / 10;
+			i++;
+		}
+		int x;
+		string answe="";
+		string table = "0123456789abcdefg";
+		while (s > 0) {
+			int ys = s % b;
+			answe += table[ys];
+			s = s / b;
+		}
+		string answer = "";
+		for (int q = answe.length() - 1; q >= 0; q--) {
+			answer += answe[q];
+		}
+		cout << answer << endl;
+		cin >> a >> b >> C;
+	}
+}
