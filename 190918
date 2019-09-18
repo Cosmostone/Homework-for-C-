@@ -1,0 +1,330 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Node {
+	char c;
+	Node *next;
+};
+
+void stoa(string s, Node *a) {
+	Node *b = a;
+	for (int i = 1; i < s.length(); i++) {
+		Node *m = new Node;
+		b->next = m;
+		m->c = s[i];
+		m->next = NULL;
+		b = b->next;
+	}
+}
+
+void out(int m, Node *a) {
+	cout << "array[" << m << "]:";
+	while (a) {
+		cout << a->c << "->";
+		a = a->next;
+	}
+	cout << "NULL" << endl;
+	if (m == 1) {
+		cout << endl;
+	}
+}
+
+string px(string s) {
+	for (int i = 0; i < s.length(); i++) {
+		int min = i;
+		for (int j = i + 1; j < s.length(); j++) {
+			if (s[min] > s[j]) {
+				min = j;
+			}
+		}
+		int mid = s[min];
+		s[min] = s[i];
+		s[i] = mid;
+	}
+	return s;
+}
+
+void tco(Node *a, Node *b) {
+	while (b) {
+		Node *tmp = new Node;
+		tmp->c = b->c;
+		tmp->next = a->next;
+		a->next = tmp;
+		b = b->next;
+		a = a->next;
+		a = a->next;
+	}
+}
+
+int main() {
+	string s1, s2;
+	cout << "请输入两个字符串：" << endl;
+	getline(cin, s1);
+	getline(cin, s2);
+	cout << endl;
+	Node *array[2];
+	array[0] = new Node;
+	array[0]->c = s1[0];
+	array[0]->next = NULL;
+	cout << "将第1个字符串以原始顺序建立链表，用array[0]指向该链表：" << endl;
+	stoa(s1, array[0]);
+	out(0, array[0]);
+	cout << "array[1]:NULL" << endl;
+	cout << endl;
+	cout << "将第1个字符串以字典顺序建立链表，用array[1]指向该链表：" << endl;
+	string s12 = px(s1);
+	array[1] = new Node;
+	array[1]->c = s12[0];
+	array[1]->next = NULL;
+	stoa(s12, array[1]);
+	out(0, array[0]);
+	out(1, array[1]);
+	cout << "将第2个字符串以一个间一个的方式插入array[0]后面的链表：" << endl;
+	Node *zfc2;
+	zfc2 = new Node;
+	zfc2->c = s2[0];
+	zfc2->next = NULL;
+	stoa(s2, zfc2);
+	Node *cr32 = zfc2;
+	Node *cr31 = array[0];
+	tco(cr31, cr32);
+	out(0, array[0]);
+	out(1, array[1]);
+	cout << "将第2个字符串以字典序插入array[1]后面的链表：" << endl;
+	string s3 = s1 + s2;
+	s3=px(s3);
+	array[1]->c = s3[0];
+	array[1]->next = NULL;
+	stoa(s3, array[1]);
+	out(0, array[0]);
+	out (1, array[1]);
+	cout << "删除array[0]和array[1]后面的链表中对应位置字符相同的结点：" << endl;
+	Node *a1 = new Node;
+	a1->next = array[0];
+	Node *mmm = a1;
+	Node *a2 = new Node;
+	Node *nnn = a2;
+	a2->next = array[1];
+	while (array[0]) {
+		if (array[0]->c == array[1]->c) {
+			a1->next = array[0]->next;
+			a2->next = array[1]->next;
+			array[0] = array[0]->next;
+			array[1] = array[1]->next;
+		}
+		else {
+			a1 = a1->next;
+			a2 = a2->next;
+			array[0] = array[0]->next;
+			array[1] = array[1]->next;
+		}
+	}
+	out(0, mmm->next);
+	out(1, nnn->next);
+	return 0;
+}
+
+
+#include <iostream>
+#include<string>
+using namespace std;
+
+struct Node {
+	int c;
+	Node *next;
+};
+
+Node *input() {
+	Node *head = NULL;
+	Node *tail = NULL;
+	int x;
+	cin >> x;
+	while (x != -1) {
+		Node *p = new Node;
+		p->c = x;
+		p->next = NULL;
+		if (head == NULL) {
+			head = tail = p;
+		}
+		else {
+			tail->next = p;
+			tail = p;
+		}
+		cin >> x;
+	}
+	return head;
+}
+
+void output(Node *head) {
+	Node *tr = head;
+	while (head) {
+		cout << head->c << ' ';
+		head = head->next;
+	}
+	if (tr == NULL) {
+		cout << "集合为空！";
+	}
+	cout << endl;
+}
+
+Node *bing_1(Node *s1, Node *s2) {
+	Node *s11 = s1;
+	Node *s22 = s2;
+	Node *s31 = NULL;
+	Node *s32 = NULL;
+	while (s11) {
+		Node *p = new Node;
+		p->c = s11->c;
+		p->next = NULL;
+		s11 = s11->next;
+		if (s31 == NULL) {
+			s31 = s32 = p;
+		}
+		else {
+			s32->next = p;
+			s32 = p;
+		}
+	}
+	while (s22) {
+		Node *p = new Node;
+		p->c = s22->c;
+		p->next = NULL;
+		s22 = s22->next;
+		if (s31 == NULL) {
+			s31 = s32 = p;
+		}
+		else {
+			s32->next = p;
+			s32 = p;
+		}
+	}
+	return s31;
+}
+
+Node *jiao(Node *s1,Node*s2) {
+	Node *jiao = NULL;
+	Node *tail = NULL;
+	Node *s11 = s1;
+	Node *s22 = s2;
+	while (s11) {
+		Node *tmp = s22;
+		while (tmp) {
+			if (s11->c == tmp->c) {
+				Node *p = new Node;
+				p->c = s11->c;
+				if (jiao == NULL) {
+					jiao = tail = p;
+				}
+				else {
+					tail->next = p;
+					tail = p;
+				}
+				break;
+			}
+			tmp = tmp->next;
+		}
+		s11 = s11->next;
+	}
+	if (tail != NULL) {
+		tail->next = NULL;
+	}
+	return jiao;
+}
+
+Node *dele(Node *s) {
+	Node *ss = s;
+	while (ss) {
+		Node *ss1 = ss;
+		Node *ss2 = ss->next;
+		while (ss2) {
+			if (ss->c == ss2->c) {
+				ss1->next = ss2->next;
+				ss2 = ss2->next;
+			}
+			else {
+				ss1 = ss1->next;
+				ss2 = ss2->next;
+			}
+		}
+		ss = ss->next;
+	}
+	return s;
+}
+
+Node *dee(Node *s) {
+	Node *ss = s;
+	Node *ss_ = new Node;
+	ss_->next = ss;
+	int flag = 1;
+	while (ss) {
+		flag = 1;
+		Node *ss1 = ss;
+		Node *ss2 = ss->next;
+		while (ss2) {
+			if (ss->c == ss2->c) {
+				if (ss->c == s->c) {
+					s = s->next;
+				}
+				ss1->next = ss2->next;
+				ss2 = ss2->next;
+				ss_->next = ss->next;
+				ss = ss->next;
+				flag = 0;
+			}
+			else {
+				ss1 = ss1->next;
+				ss2 = ss2->next;
+			}
+		}
+		if (flag == 1) {
+			ss_ = ss_->next;
+			ss = ss->next;
+		}
+	}
+	return s;
+}
+
+int main() {
+	cout << "本程序中的元素皆为整数：" << endl;
+	cout << "请输入集合1中的元素（以空格或回车分割，输入-1并回车以结束）：" << endl;
+	Node *s1 = input();
+	cout << "请输入集合2中的元素（以空格或回车分割，输入-1并回车以结束）：" << endl;
+	Node *s2 = input();
+	s1 = dele(s1);
+	s2 = dele(s2);
+	cout << "现在将输出集合1中的元素(已去重）：" << endl;
+	output(s1);
+	cout << "现在将输出集合2中的元素(已去重）：" << endl;
+	output(s2);
+	cout << "集合1与集合2的并集元素为：" << endl;
+	Node *s3=bing_1(s1, s2);
+	Node *s4 = dele(s3);
+	output(s4);
+	cout << "集合1与集合2的交集元素为：" << endl;
+	Node *s5=jiao(s1, s2);
+	output(s5);
+	cout << "集合1与集合2的差集元素为：" << endl;
+	Node *s6 = bing_1(s4, s5);
+	Node *s7 = dee(s6);
+	output(s7);
+	cout << "判断集合是否包含元素，以集合1为例，请输入您想判断的元素：（输入-1并回车以结束）" << endl;
+	int m;
+	cin >> m;
+	while (m != -1) {
+		Node *judge = s1;
+		while (judge) {
+			if (judge->c == m) {
+				cout << "集合1中包含元素" << m << endl;
+				break;
+			}
+			judge = judge->next;
+		}
+		if (judge == NULL) {
+			cout << "集合1中不包含元素" << m << endl;
+		}
+		cout << "判断集合是否包含元素，以集合1为例，请输入您想判断的元素：（输入-1并回车以结束）" << endl;
+		cin >> m;
+	}
+	return 0;
+}
