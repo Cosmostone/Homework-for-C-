@@ -1,0 +1,106 @@
+#include "stdafx.h"
+#include <string>
+#include <iostream>
+using namespace std;
+
+// if man was meant to stay on the ground god would have given us roots
+
+
+int main(){
+	string s;
+	getline(cin,s);
+ 	for (int i = 0; i < s.length(); i++){
+		if (s[i] == ' '){
+			s.erase(i,1);
+		}
+	}
+	int L = s.length();
+	int row = floor(sqrt(L));
+	int col = ceil(sqrt(L));
+	if (col*row < L){
+		row += 1;
+	}
+	char a[20][20];
+	for (int i = 0; i < row; i++){
+		for (int j = 0; j < col; j++){
+			if (i*col + j < s.length()){
+				a[i][j] = s[i*col + j];
+			}
+			else{
+				a[i][j] = ' ';
+			}
+		}
+	}
+	for (int j = 0; j < col; j++){
+		for (int i = 0;i < row; i++){
+			cout << a[i][j];
+		}
+		if (a[j][row - 1] != ' '){
+			cout << ' ';
+		}
+	}
+	return 0;
+}
+
+
+
+#include "pch.h"
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+
+int main() {
+	ifstream f;
+	f.open("d:\\article.txt");
+	char word[30];
+	char re[500][30];
+	int i = 0;
+	while (f >> word) {
+		strcpy_s(re[i], word);
+		i++;
+	}
+	for (int j = 0; j < i; j++) {
+		for (int k = 0; k < 30; k++) {
+			if (re[j][0] == '(' || re[j][0] == '"') {
+				for (int m = 0; m < 29; m++) {
+					re[j][m] = re[j][m + 1];
+				}
+				k = -1;
+				continue;
+			}
+			if (re[j][k] >= 'A'&&re[j][k] <= 'Z') {
+				re[j][k] = re[j][k] + 32;
+			}
+			if (re[j][k] >= 'a'&&re[j][k] <= 'z') {
+				continue;
+			}
+			else {
+				re[j][k] = '\0';
+				break;
+			}
+		}
+	}
+	int num[501];
+	for (int nu = 0; nu <= 500; nu++) {
+		num[nu] = 1;
+	}
+	for (int p = 0; p < i-1; p++) {
+		for (int q = p+1; q < i ; q++) {
+			if (strcmp(re[p], re[q]) == 0) {
+				num[p] += 1;
+				i -= 1;
+				for (int cf = q; cf < i; cf++) {
+					strcpy_s(re[cf], re[cf+1]);
+				}
+				q = q - 1;
+			}
+		}
+	}
+	ofstream result;
+	result.open("d:\\result.txt");
+	for (int qwe = 0; qwe < i; qwe++) {
+		result << re[qwe] << ' ' << num[qwe] << endl;
+	}
+	return 0;
+}
