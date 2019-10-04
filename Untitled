@@ -1,8 +1,0 @@
-#include <iostream>
-#include <ifstream>
-using namespace std;
-
-int main(){
-  cout<<"texting__";
-  return 0;
-}
